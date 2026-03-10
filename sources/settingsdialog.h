@@ -20,7 +20,8 @@ class SettingsDialog : public IwDialog {
   QComboBox* m_alphaModeCombo;
   QComboBox* m_resampleModeCombo;
   MyIntSlider* m_imageShrinkSlider;
-  QCheckBox* m_antialiasCheckBox;
+  QCheckBox* m_keepSemiTransparentCheckBox;
+  QCheckBox* m_maskWithParentShapeCheckBox;
   MyIntSlider* m_matteDilateSlider;
 
   // Preference‚æ‚è
@@ -44,7 +45,8 @@ protected slots:
   void onAlphaModeComboActivated(int index);
   void onResampleModeComboActivated();
   void onImageShrinkChanged(bool isDragging);
-  void onAntialiasClicked(bool on);
+  void onKeepSemiTransparentClicked(bool on);
+  void onMaskWithParentShapeClicked(bool on);
   void onMatteDilateValueChanged(bool isDragging);
   // Preference‚æ‚è
   void onBezierPrecisionComboChanged(int index);

@@ -106,18 +106,19 @@ class ResampleResults_Worker : public QRunnable {
   TRaster64P m_outRas;
   TRaster64P m_retRas;
   int m_subAmount;
-  bool m_antialias;
+  // bool m_antialias; //obsoleted
+  bool m_keepSemiTransparent;
   void run() override;
 
 public:
   ResampleResults_Worker(int from, int to, TRaster64P outRas, TRaster64P retRas,
-                         int subAmount, bool antialias)
+                         int subAmount, bool keepSemiTransparent)
       : m_from(from)
       , m_to(to)
       , m_outRas(outRas)
       , m_retRas(retRas)
       , m_subAmount(subAmount)
-      , m_antialias(antialias) {}
+      , m_keepSemiTransparent(keepSemiTransparent) {}
 };
 
 class IwRenderInstance : public QObject, public QRunnable {
@@ -136,7 +137,9 @@ class IwRenderInstance : public QObject, public QRunnable {
 
   unsigned int m_taskId;
 
-  bool m_antialias;
+  // bool m_antialias; // obsoleted
+  bool m_keepSemiTransparent;
+  bool m_maskWithParentShape;
 
   void run() override;
 
@@ -200,7 +203,7 @@ public:
 
   bool isCanceled();
 
-  bool antialiasEnabled() const { return m_antialias; }
+  bool maskWithParentShapeEnabled() const { return m_maskWithParentShape; }
 
 signals:
   void renderStarted(int frame, unsigned int taskId);

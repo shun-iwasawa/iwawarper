@@ -198,7 +198,9 @@ IwRenderInstance::IwRenderInstance(int frame, int outputFrame,
   RenderSettings* settings = m_project->getRenderSettings();
   m_precision              = settings->getWarpPrecision();
   m_faceSizeThreshold      = settings->getFaceSizeThreshold();
-  m_antialias              = settings->getAntialias();
+  // m_antialias              = settings->getAntialias();
+  m_keepSemiTransparent = settings->keepSemiTransparent();
+  m_maskWithParentShape = settings->maskWithParentShape();
 }
 
 //---------------------------------------------------
@@ -885,7 +887,7 @@ void MapTrianglesToRaster_Worker::run() {
               // シェイプの形で抜く場合は、アルファは必ずMaxにする
               if (m_alphaMode == ShapeAlpha) pix.m = TPixel64::maxChannelValue;
 
-              if (m_parentInstance->antialiasEnabled())
+              if (m_parentInstance->maskWithParentShapeEnabled())
                 pix.m = (unsigned short)((int)pix.m * (int)(*alpha_p) /
                                          (int)UCHAR_MAX);
 
@@ -946,7 +948,7 @@ void ResampleResults_Worker::run() {
           }
         }
       }
-      if (m_antialias) {
+      if (m_keepSemiTransparent) {
         retpix->r = (unsigned short)(rr / subAmount2);
         retpix->g = (unsigned short)(gg / subAmount2);
         retpix->b = (unsigned short)(bb / subAmount2);
@@ -1094,7 +1096,7 @@ TRaster64P IwRenderInstance::HEmapTrianglesToRaster_Multi(
     if (tmpStart == tmpEnd) continue;
 
     ResampleResults_Worker* task = new ResampleResults_Worker(
-        tmpStart, tmpEnd, outRas, retRas, subAmount, m_antialias);
+        tmpStart, tmpEnd, outRas, retRas, subAmount, m_keepSemiTransparent);
 
     QThreadPool::globalInstance()->start(task);
 

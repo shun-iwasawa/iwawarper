@@ -36,8 +36,12 @@ SettingsDialog::SettingsDialog()
   m_alphaModeCombo      = new QComboBox(this);
   m_resampleModeCombo   = new QComboBox(this);
   m_imageShrinkSlider   = new MyIntSlider(1, 4, this);
-  m_antialiasCheckBox   = new QCheckBox(tr("Shape Antialias"), this);
-  m_matteDilateSlider   = new MyIntSlider(0, 3, this);
+  // m_antialiasCheckBox = new QCheckBox(tr("Shape Antialias"), this);
+  m_keepSemiTransparentCheckBox =
+      new QCheckBox(tr("Keep Semi-transparent Pixels In Source Image"), this);
+  m_maskWithParentShapeCheckBox =
+      new QCheckBox(tr("Mask Result With Antialiased Parent Shape"), this);
+  m_matteDilateSlider = new MyIntSlider(0, 3, this);
 
   // Preference‚æ‚è
   m_bezierPrecisionCombo = new QComboBox(this);
@@ -100,15 +104,16 @@ SettingsDialog::SettingsDialog()
       projectSettingsLay->addWidget(m_resampleModeCombo, 3, 1,
                                     Qt::AlignLeft | Qt::AlignVCenter);
 
-      projectSettingsLay->addWidget(m_antialiasCheckBox, 4, 0, 1, 2);
+      projectSettingsLay->addWidget(m_keepSemiTransparentCheckBox, 4, 0, 1, 2);
+      projectSettingsLay->addWidget(m_maskWithParentShapeCheckBox, 5, 0, 1, 2);
 
-      projectSettingsLay->addWidget(new QLabel(tr("Image Shrink:")), 5, 0,
+      projectSettingsLay->addWidget(new QLabel(tr("Image Shrink:")), 6, 0,
                                     Qt::AlignRight | Qt::AlignVCenter);
-      projectSettingsLay->addWidget(m_imageShrinkSlider, 5, 1);
+      projectSettingsLay->addWidget(m_imageShrinkSlider, 6, 1);
 
-      projectSettingsLay->addWidget(new QLabel(tr("Matte Dilate:")), 6, 0,
+      projectSettingsLay->addWidget(new QLabel(tr("Matte Dilate:")), 7, 0,
                                     Qt::AlignRight | Qt::AlignVCenter);
-      projectSettingsLay->addWidget(m_matteDilateSlider, 6, 1);
+      projectSettingsLay->addWidget(m_matteDilateSlider, 7, 1);
     }
     projectSettingsLay->setColumnStretch(0, 0);
     projectSettingsLay->setColumnStretch(1, 1);
@@ -153,8 +158,10 @@ SettingsDialog::SettingsDialog()
           SLOT(onResampleModeComboActivated()));
   connect(m_imageShrinkSlider, SIGNAL(valueChanged(bool)), this,
           SLOT(onImageShrinkChanged(bool)));
-  connect(m_antialiasCheckBox, SIGNAL(clicked(bool)), this,
-          SLOT(onAntialiasClicked(bool)));
+  connect(m_keepSemiTransparentCheckBox, SIGNAL(clicked(bool)), this,
+          SLOT(onKeepSemiTransparentClicked(bool)));
+  connect(m_maskWithParentShapeCheckBox, SIGNAL(clicked(bool)), this,
+          SLOT(onMaskWithParentShapeClicked(bool)));
   connect(m_matteDilateSlider, SIGNAL(valueChanged(bool)), this,
           SLOT(onMatteDilateValueChanged(bool)));
 
@@ -208,7 +215,8 @@ void SettingsDialog::onProjectSwitched() {
     m_resampleModeCombo->setCurrentIndex(
         m_resampleModeCombo->findData((int)settings->getResampleMode()));
     m_imageShrinkSlider->setValue(settings->getImageShrink());
-    m_antialiasCheckBox->setChecked(settings->getAntialias());
+    m_keepSemiTransparentCheckBox->setChecked(settings->keepSemiTransparent());
+    m_maskWithParentShapeCheckBox->setChecked(settings->maskWithParentShape());
     m_matteDilateSlider->setValue(settings->getMatteDilate());
   }
   update();
@@ -311,15 +319,27 @@ void SettingsDialog::onImageShrinkChanged(bool isDragging) {
   IwApp::instance()->getCurrentProject()->notifyProjectChanged();
 }
 
-void SettingsDialog::onAntialiasClicked(bool on) {
+void SettingsDialog::onKeepSemiTransparentClicked(bool on) {
   IwProject* project = IwApp::instance()->getCurrentProject()->getProject();
   if (!project) return;
   RenderSettings* settings = project->getRenderSettings();
   if (!settings) return;
 
-  if (on == settings->getAntialias()) return;
+  if (on == settings->keepSemiTransparent()) return;
 
-  settings->setAntialias(on);
+  settings->setKeepSemiTransparent(on);
+  IwApp::instance()->getCurrentProject()->notifyProjectChanged();
+}
+
+void SettingsDialog::onMaskWithParentShapeClicked(bool on) {
+  IwProject* project = IwApp::instance()->getCurrentProject()->getProject();
+  if (!project) return;
+  RenderSettings* settings = project->getRenderSettings();
+  if (!settings) return;
+
+  if (on == settings->maskWithParentShape()) return;
+
+  settings->setMaskWithParentShape(on);
   IwApp::instance()->getCurrentProject()->notifyProjectChanged();
 }
 
