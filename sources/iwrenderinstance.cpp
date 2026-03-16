@@ -400,9 +400,16 @@ TRaster64P IwRenderInstance::warpLayer(IwLayer* layer,
   // demultiplyする
   if (checkIsPremultiplied(inRas)) TRop::depremultiply(inRas);
 
+  // 計算範囲はメッシュのバウンディングボックス
+  QRectF faceBBox = model.getToBBox();
+  QRect boundingRect =
+      faceBBox.toRect()
+          .marginsAdded(QMargins(5, 5, 5, 5))
+          .intersected(QRect(QPoint(), m_project->getWorkAreaSize()));
+
   // ここで、Matteに指定したレイヤがある場合、マット画像を作成する
   // shapes.last()がこのグループの親シェイプ
-  TRasterGR8P matteRas = createMatteRas(shapes.last());
+  TRasterGR8P matteRas = createMatteRas(shapes.last(), boundingRect);
 
   // ここで、Morphological
   // Supersamplingを行う場合、サンプル用の境界線マップ画像を生成する
@@ -411,7 +418,7 @@ TRaster64P IwRenderInstance::warpLayer(IwLayer* layer,
   // ゆがんだ形状を描画する
   TRaster64P outRas = HEmapTrianglesToRaster_Multi(
       model, inRas, matteRas, mlssRefRas, shapes.last(), origin,
-      QPolygonF(parentShapeVerticesTo));
+      QPolygonF(parentShapeVerticesTo), boundingRect);
 
   return outRas;
 }
@@ -976,21 +983,11 @@ void ResampleResults_Worker::run() {
 TRaster64P IwRenderInstance::HEmapTrianglesToRaster_Multi(
     HEModel& model, TRaster64P srcRas, TRasterGR8P matteRas,
     TRaster64P mlssRefRas, ShapePair* shape, QPoint& origin,
-    const QPolygonF& parentShapePolygon) {
-  QSize workAreaSize = m_project->getWorkAreaSize();
-  // 計算範囲
-  QRectF shapeBBox = shape->getBBox(
-      m_frame, 1);  // TO のバウンディングボックス（IwaWarper座標系）
-  shapeBBox          = QRectF(shapeBBox.left() * (double)workAreaSize.width(),
-                              shapeBBox.top() * (double)workAreaSize.height(),
-                              shapeBBox.width() * (double)workAreaSize.width(),
-                              shapeBBox.height() * (double)workAreaSize.height());
-  QRect boundingRect = shapeBBox.toRect()
-                           .marginsAdded(QMargins(5, 5, 5, 5))
-                           .intersected(QRect(QPoint(), workAreaSize));
-
+    const QPolygonF& parentShapePolygon, const QRect& boundingRect) {
   // 画面外にTo形状がはみ出しているとき
   if (boundingRect.isEmpty()) return TRaster64P();
+
+  QSize workAreaSize = m_project->getWorkAreaSize();
 
   // 計算範囲の原点
   origin = boundingRect.topLeft();
@@ -1109,10 +1106,13 @@ TRaster64P IwRenderInstance::HEmapTrianglesToRaster_Multi(
 //---------------------------------------------------
 // マット画像を作成する
 //---------------------------------------------------
-TRasterGR8P IwRenderInstance::createMatteRas(ShapePair* shape) {
+TRasterGR8P IwRenderInstance::createMatteRas(ShapePair* shape,
+                                             const QRect& boundingRect) {
   ShapePair::MatteInfo matteInfo = shape->matteInfo();
   if (matteInfo.layerName.isEmpty()) return TRasterGR8P();
   if (matteInfo.colors.isEmpty()) return TRasterGR8P();
+  // 画面外にTo形状がはみ出しているとき
+  if (boundingRect.isEmpty()) return TRasterGR8P();
 
   IwLayer* matteLayer = m_project->getLayerByName(matteInfo.layerName);
   if (!matteLayer) return TRasterGR8P();
@@ -1122,19 +1122,6 @@ TRasterGR8P IwRenderInstance::createMatteRas(ShapePair* shape) {
 
   // 計算範囲
   QSize workAreaSize = m_project->getWorkAreaSize();
-  QRectF shapeBBox   = shape->getBBox(
-      m_frame, 1);  // TO のバウンディングボックス（IwaWarper座標系）
-  shapeBBox = QRectF(shapeBBox.left() * (double)workAreaSize.width(),
-                     shapeBBox.top() * (double)workAreaSize.height(),
-                     shapeBBox.width() * (double)workAreaSize.width(),
-                     shapeBBox.height() * (double)workAreaSize.height());
-
-  QRect boundingRect = shapeBBox.toRect()
-                           .marginsAdded(QMargins(5, 5, 5, 5))
-                           .intersected(QRect(QPoint(), workAreaSize));
-
-  // 画面外にTo形状がはみ出しているとき
-  if (boundingRect.isEmpty()) return TRasterGR8P();
 
   // サンプル点のためのオフセット
   QPointF sampleOffset(0.5f * (double)(ras->getLx() - workAreaSize.width()) +

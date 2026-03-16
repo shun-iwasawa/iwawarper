@@ -162,6 +162,17 @@ double HEFace::centroidDepth() const {
   return (A->from_pos.z() + B->from_pos.z() + C->from_pos.z()) / 3.0;
 }
 
+QRectF HEFace::getToBBox() const {
+  QVector3D Apos = halfedge->vertex->to_pos;
+  QVector3D Bpos = halfedge->next->vertex->to_pos;
+  QVector3D Cpos = halfedge->prev->vertex->to_pos;
+
+  return QRectF(QPointF(std::min(std::min(Apos.x(), Bpos.x()), Cpos.x()),
+                        std::min(std::min(Apos.y(), Bpos.y()), Cpos.y())),
+                QPointF(std::max(std::max(Apos.x(), Bpos.x()), Cpos.x()),
+                        std::max(std::max(Apos.y(), Bpos.y()), Cpos.y())));
+}
+
 //---------------------------------------------------
 
 // Find a pair half edge of he and register it
@@ -643,8 +654,8 @@ void HEModel::checkFaceVisibility(const QPolygonF& parentShapePolygon) {
     HEVertex* C            = he->prev->vertex;
     QVector3D fromCentroid = (A->from_pos + B->from_pos + C->from_pos) / 3.0;
     if (!parentShapePolygon.containsPoint(fromCentroid.toPointF(),
-                                         Qt::WindingFill))
-     face->isVisible = false;
+                                          Qt::WindingFill))
+      face->isVisible = false;
   }
 }
 
@@ -770,4 +781,17 @@ void HEModel::print() {
     i++;
   }
   std::cout << "------------" << std::endl << std::endl;
+}
+
+// Toメッシュ形状のBBoxを返す
+QRectF HEModel::getToBBox() {
+  QRectF retRect = QRectF();
+  // 全てのfacesについて
+  QList<HEFace*>::iterator itr;
+  for (itr = faces.begin(); itr != faces.end(); ++itr) {
+    if (!(*itr)->isVisible) continue;
+
+    retRect |= (*itr)->getToBBox();
+  }
+  return retRect;
 }
