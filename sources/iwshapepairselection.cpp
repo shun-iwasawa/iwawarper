@@ -120,6 +120,7 @@ void IwShapePairSelection::enableCommands() {
   enableCommand(this, MI_ToggleShapeLock, &IwShapePairSelection::toggleLocks);
   enableCommand(this, MI_ToggleVisibility,
                 &IwShapePairSelection::toggleVisibility);
+  enableCommand(this, MI_PasteMatteInfo, &IwShapePairSelection::pasteMatteInfo);
 }
 
 bool IwShapePairSelection::isEmpty() const { return m_shapes.isEmpty(); }
@@ -681,6 +682,44 @@ void IwShapePairSelection::setShapeTag(int tagId, bool on) {
 }
 
 //---------------------------------------------------
+// マット情報貼り付け
+//---------------------------------------------------
+void IwShapePairSelection::pasteMatteInfo() {
+  // プロジェクト無ければreturn
+  IwProject* project = IwApp::instance()->getCurrentProject()->getProject();
+  if (!project) return;
+
+  // クリップボードからデータを取り、ShapePairDataかどうか確認
+  QClipboard* clipboard     = QApplication::clipboard();
+  const QMimeData* mimeData = clipboard->mimeData();
+  const ShapePairData* shapePairData =
+      dynamic_cast<const ShapePairData*>(mimeData);
+  // データが違っていたらreturn
+  if (!shapePairData) return;
+  // とりあえず、コピーしたシェイプは１つだけである必要
+  if (shapePairData->m_data.count() != 1) return;
+
+  ShapePair::MatteInfo matteInfo = shapePairData->m_data[0]->matteInfo();
+
+  // 選択シェイプ取得
+  QList<OneShape>::iterator i = m_shapes.begin();
+  QList<ShapePair*> shapePairs;
+  while (i != m_shapes.end()) {
+    if ((*i).shapePairP && project->contains((*i).shapePairP) &&
+        !shapePairs.contains((*i).shapePairP)) {
+      shapePairs.append((*i).shapePairP);
+    }
+    i++;
+  }
+
+  if (shapePairs.isEmpty()) return;
+
+  // Undoに登録 同時にredoが呼ばれる
+  IwUndoManager::instance()->push(
+      new PasteMatteInfoUndo(shapePairs, project, matteInfo));
+}
+
+//---------------------------------------------------
 // 以下、Undoコマンドを登録
 //---------------------------------------------------
 
@@ -894,3 +933,40 @@ void SetShapeTagUndo::setTag(bool isUndo) {
 void SetShapeTagUndo::undo() { setTag(true); }
 
 void SetShapeTagUndo::redo() { setTag(false); }
+
+//---------------------------------------------------
+// マット情報貼り付けのUndo
+//---------------------------------------------------
+
+PasteMatteInfoUndo::PasteMatteInfoUndo(QList<ShapePair*>& shapePairs,
+                                       IwProject* project,
+                                       ShapePair::MatteInfo newInfo)
+    : m_project(project), m_newInfo(newInfo) {
+  for (auto shapePair : shapePairs) {
+    m_prevMatteInfos.append(QPair<ShapePair*, ShapePair::MatteInfo>(
+        shapePair, shapePair->matteInfo()));
+  }
+}
+
+void PasteMatteInfoUndo::undo() {
+  for (auto infoData : m_prevMatteInfos) {
+    ShapePair* shapePair      = infoData.first;
+    ShapePair::MatteInfo info = infoData.second;
+    shapePair->setMatteLayerName(info.layerName);
+    shapePair->setMatteColors(info.colors);
+    shapePair->setMatteTolerance(info.tolerance);
+  }
+  if (m_project->isCurrent())
+    IwApp::instance()->getCurrentProject()->notifyProjectChanged();
+}
+
+void PasteMatteInfoUndo::redo() {
+  for (auto infoData : m_prevMatteInfos) {
+    ShapePair* shapePair = infoData.first;
+    shapePair->setMatteLayerName(m_newInfo.layerName);
+    shapePair->setMatteColors(m_newInfo.colors);
+    shapePair->setMatteTolerance(m_newInfo.tolerance);
+  }
+  if (m_project->isCurrent())
+    IwApp::instance()->getCurrentProject()->notifyProjectChanged();
+}

@@ -420,6 +420,8 @@ void MainWindow::defineActions() {
                MenuShapeCommandType);
   createAction(MI_ToggleVisibility, tr("Toggle Visibility of Selected Shapes"),
                "", MenuShapeCommandType);
+  createAction(MI_PasteMatteInfo, tr("Paste Matte Info"), "Ctrl+Alt+V",
+               MenuShapeCommandType);
 }
 
 //---------------------------------------------------

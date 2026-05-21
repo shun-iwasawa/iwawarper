@@ -127,6 +127,9 @@ public:
 
   // シェイプタグ切り替え
   void setShapeTag(int tagId, bool on);
+
+  // マット情報貼り付け
+  void pasteMatteInfo();
 };
 
 //---------------------------------------------------
@@ -242,6 +245,22 @@ public:
   SetShapeTagUndo(QList<OneShape>& shapes, IwProject* project, int tagId,
                   bool on);
   void setTag(bool isUndo);
+  void undo();
+  void redo();
+};
+
+//---------------------------------------------------
+// マット情報貼り付けのUndo
+//---------------------------------------------------
+
+class PasteMatteInfoUndo : public QUndoCommand {
+  QList<QPair<ShapePair*, ShapePair::MatteInfo>> m_prevMatteInfos;
+  IwProject* m_project;
+  ShapePair::MatteInfo m_newInfo;
+
+public:
+  PasteMatteInfoUndo(QList<ShapePair*>& shapePairs, IwProject* project,
+                     ShapePair::MatteInfo newInfo);
   void undo();
   void redo();
 };
