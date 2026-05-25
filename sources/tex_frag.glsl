@@ -1,7 +1,6 @@
 #version 410
-uniform sampler2D texture;
 uniform sampler2D matteTexture;
-
+uniform sampler2D tex;
 uniform highp float alpha;
 uniform bool matte_sw;
 uniform highp vec4 matteColors[10];
@@ -22,7 +21,7 @@ bool checkMatte(vec4 mc, int mcIndex, float matteTolerance){
 
 
 void main() {
-	fc = texture2D(texture, vUv)*alpha;
+	fc = texture(tex, vUv)*alpha;
    
 	if(matte_sw){
 		vec2 uvStep = vec2(1./matteImgSize.x, 1./matteImgSize.y);
@@ -33,7 +32,7 @@ void main() {
 			for(int dx = -matteDilate; dx <= matteDilate; dx++){
 				float uPos = vMatteUv.x + uvStep.x * dx;		
 				// matteTexture‚ÌF‚ðŽæ“¾
-				vec4 mc = texture2D(matteTexture, vec2(uPos, vPos));
+				vec4 mc = texture(matteTexture, vec2(uPos, vPos));
 
 				for(int i = 0; i < 10; i++){
 					// MatteF‚ª‚à‚¤‚È‚¢ê‡
