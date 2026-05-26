@@ -1,13 +1,26 @@
 name: MacOS Build
 
-on: [push, pull_request]
+on: 
+  push:
+    paths:
+      - '**/*'                                  # Include all files in the repository
+      - '!README.md'                            # Exclude README
+      - '!doc/**'                               # Exclude documentation
+      - '!**/.github/**'                        # Exclude everything in .github folder
+      - '.github/workflows/workflow_macos.yml'  # Include MacOs workflow file
+  pull_request:
+    paths:
+      - '**/*'
+      - '!README.md'
+      - '!doc/**'
+      - '!**/.github/**'
+      - '.github/workflows/workflow_macos.yml'
 
 jobs:
   macOS:
     runs-on: 	macos-15-intel
     steps:
-    - name: checkout with cached LFS
-      uses: nschloe/action-cached-lfs-checkout@v1
+    - uses: actions/checkout@v6
 
     - name: Remove symlinks
       run: |
@@ -28,7 +41,7 @@ jobs:
         brew update
         brew install qt@5 ninja ccache
         
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       with:
         path: /Users/runner/.ccache
         key: ${{ runner.os }}-${{ github.sha }}
@@ -71,7 +84,7 @@ jobs:
         cd build
         /usr/local/opt/qt@5/bin/macdeployqt IwaWarper.app -dmg -verbose=1
     
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@v6
       with:
         name: IwaWarper-${{ runner.os }}-${{ github.sha }}
         path: build/IwaWarper.dmg
