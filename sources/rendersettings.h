@@ -5,6 +5,8 @@
 #ifndef RENDERSETTINGS_H
 #define RENDERSETTINGS_H
 
+#include "iwproject.h"
+
 class QXmlStreamWriter;
 class QXmlStreamReader;
 
@@ -29,7 +31,9 @@ class RenderSettings {
   // ラスター画像の縮小読み込み
   int m_imageShrink;
 
-  bool m_antialias;
+  // bool m_antialias; // obsoleted
+  bool m_keepSemiTransparent;
+  bool m_maskWithParentShape;
 
   int m_matteDilate;
 
@@ -51,15 +55,21 @@ public:
   int getImageShrink() const { return m_imageShrink; }
   void setImageShrink(const int imageShrink) { m_imageShrink = imageShrink; }
 
-  bool getAntialias() const { return m_antialias; }
-  void setAntialias(const bool on) { m_antialias = on; }
+  // bool getAntialias() const { return m_antialias; }
+  // void setAntialias(const bool on) { m_antialias = on; }
+
+  bool keepSemiTransparent() const { return m_keepSemiTransparent; }
+  void setKeepSemiTransparent(const bool on) { m_keepSemiTransparent = on; }
+
+  bool maskWithParentShape() const { return m_maskWithParentShape; }
+  void setMaskWithParentShape(const bool on) { m_maskWithParentShape = on; }
 
   int getMatteDilate() const { return m_matteDilate; }
   void setMatteDilate(const int dilate) { m_matteDilate = dilate; }
 
   // 保存/ロード
   void saveData(QXmlStreamWriter& writer);
-  void loadData(QXmlStreamReader& reader);
+  void loadData(QXmlStreamReader& reader, const Version& loadedVersion);
 };
 
 #endif  // RENDERSETTINGS_H

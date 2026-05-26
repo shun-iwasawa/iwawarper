@@ -95,6 +95,7 @@ bool IwProject::isCurrent() {
 //---------------------------------------------------
 // 保存/ロード
 //---------------------------------------------------
+
 void IwProject::saveData(QXmlStreamWriter& writer) {
   // ImageSize (ワークエリアのサイズ)
   writer.writeComment("Work Area Size");
@@ -158,7 +159,8 @@ void IwProject::saveData(QXmlStreamWriter& writer) {
 
 //---------------------------------------------------
 
-void IwProject::loadData(QXmlStreamReader& reader) {
+void IwProject::loadData(QXmlStreamReader& reader,
+                         const Version& loadedVersion) {
   while (reader.readNextStartElement()) {
     // ImageSize (ワークエリアのサイズ)
     if (reader.name() == "ImageSize") {
@@ -192,7 +194,7 @@ void IwProject::loadData(QXmlStreamReader& reader) {
 
     // MorphOptions
     else if (reader.name() == "MorphOptions")
-      m_renderSettings->loadData(reader);
+      m_renderSettings->loadData(reader, loadedVersion);
 
     // OutputOptions : old version data
     else if (reader.name() == "OutputOptions")

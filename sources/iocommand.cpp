@@ -52,7 +52,8 @@ namespace {
 // 0.1.0 : initial version
 // 0.2.0 : Changed behavior of SaveRange and InitialFrameNumber in
 // OutputSettings
-Version projectVersion(0, 2, 0);
+// 0.3.0 : render settings -> antialias is breaked into 2 separate options
+Version projectVersion(0, 3, 0);
 
 //[ファイル名]#0000 という形式にして返す
 QString getFileNameWithFrameNumber(QString fileName, int frameNumber) {
@@ -588,7 +589,7 @@ void IoCmd::loadProject(QString path, bool addToRecentFiles) {
       reader.skipCurrentElement();
     } else if (reader.name() == "Project") {
       std::cout << "Project detected" << std::endl;
-      project->loadData(reader);
+      project->loadData(reader, loadedVersion);
     } else {
       std::cout << "Unexpected tag : " << reader.name().toString().toStdString()
                 << " detected" << std::endl;

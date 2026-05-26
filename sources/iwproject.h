@@ -151,7 +151,7 @@ public:
 
   // ï€ë∂/ÉçÅ[Éh
   void saveData(QXmlStreamWriter& writer);
-  void loadData(QXmlStreamReader& reader);
+  void loadData(QXmlStreamReader& reader, const Version& loadedVersion);
 
   void versionCheck(const Version& loadedVersion);
 

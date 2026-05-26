@@ -460,12 +460,12 @@ Remove its shapes?</source>
 <context>
     <name>IwProject</name>
     <message>
-        <location filename="../iwproject.cpp" line="236"/>
+        <location filename="../iwproject.cpp" line="249"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="../iwproject.cpp" line="237"/>
+        <location filename="../iwproject.cpp" line="250"/>
         <source>An older version of the project file was loaded. Please check the following:</source>
         <translation>古いバージョンのプロジェクトが読み込まれました。下記をご確認ください：</translation>
     </message>
@@ -1315,12 +1315,12 @@ What would you like to do?</source>
         <translation>レンダーキューにアクティブなアイテムがありません。</translation>
     </message>
     <message>
-        <location filename="../menubarcommand.cpp" line="205"/>
+        <location filename="../menubarcommand.cpp" line="206"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="../menubarcommand.cpp" line="206"/>
+        <location filename="../menubarcommand.cpp" line="207"/>
         <source>It is not possible to assign a shortcut with modifiers to the visualization commands.</source>
         <translation>視覚化コマンドには、修飾キーと組み合わせたキーボードショートカットを割り当てできません。</translation>
     </message>
@@ -1610,47 +1610,46 @@ What would you like to do?</source>
         <translation>設定</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="39"/>
         <source>Shape Antialias</source>
-        <translation>シェイプのアンチエイリアス</translation>
+        <translation type="vanished">シェイプのアンチエイリアス</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="47"/>
+        <location filename="../settingsdialog.cpp" line="49"/>
         <source>Low</source>
         <translation>低</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="48"/>
+        <location filename="../settingsdialog.cpp" line="50"/>
         <source>Medium</source>
         <translation>中</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="49"/>
+        <location filename="../settingsdialog.cpp" line="51"/>
         <source>High</source>
         <translation>高</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="50"/>
+        <location filename="../settingsdialog.cpp" line="52"/>
         <source>Super High</source>
         <translation>最高</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="57"/>
+        <location filename="../settingsdialog.cpp" line="59"/>
         <source>Area Average</source>
         <translation>平均値</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="58"/>
+        <location filename="../settingsdialog.cpp" line="60"/>
         <source>Nearest Neighbor</source>
         <translation>ニアレストネイバー</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="59"/>
+        <location filename="../settingsdialog.cpp" line="61"/>
         <source>Morphological Supersampling</source>
         <translation>形態学的スーパーサンプリング</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="61"/>
+        <location filename="../settingsdialog.cpp" line="63"/>
         <source>PLEASE NOTE: The &quot;Morphological Supersampling&quot; option is intended 
 to be used when deforming so-called &quot;color binary images&quot;, 
 such as those commonly used in the Japanese animation industry 
@@ -1660,52 +1659,62 @@ for character Levels.</source>
 いわゆるカラー二値画像を変形するときに用いられることを想定しています。</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="71"/>
+        <location filename="../settingsdialog.cpp" line="73"/>
         <source>* Changes will take effect the next time you run IwaWarper</source>
         <translation>＊ 変更は次回のIwaWarper起動時に適用されます</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="79"/>
+        <location filename="../settingsdialog.cpp" line="81"/>
         <source>Project Settings</source>
         <translation>プロジェクト設定</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="110"/>
+        <location filename="../settingsdialog.cpp" line="121"/>
         <source>User Preferences</source>
         <translation>ユーザー環境設定</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="116"/>
+        <location filename="../settingsdialog.cpp" line="127"/>
         <source>Bezier Precision:</source>
         <translation>ベジエ曲線の精度：</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="119"/>
+        <location filename="../settingsdialog.cpp" line="132"/>
         <source>Vertex Buffer Size*:</source>
-        <translation type="unfinished">頂点バッファのサイズ*：</translation>
+        <translation>頂点バッファのサイズ*：</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="85"/>
+        <location filename="../settingsdialog.cpp" line="87"/>
         <source>Number of subdivision:</source>
         <translation>メッシュ分割の回数：</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="88"/>
+        <location filename="../settingsdialog.cpp" line="40"/>
+        <source>Keep Semi-transparent Pixels In Source Image</source>
+        <translation>画像の半透明ピクセルを保持する</translation>
+    </message>
+    <message>
+        <location filename="../settingsdialog.cpp" line="41"/>
+        <source>Mask Result With Antialiased Parent Shape</source>
+        <translation>計算結果をアンチエイリアスが適用された親シェイプでマスクする</translation>
+    </message>
+    <message>
+        <location filename="../settingsdialog.cpp" line="91"/>
         <source>Maximum face size:</source>
         <translation>最大メッシュサイズ：</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="94"/>
+        <location filename="../settingsdialog.cpp" line="100"/>
         <source>Resample Mode:</source>
         <translation>リサンプル方式：</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="99"/>
+        <location filename="../settingsdialog.cpp" line="108"/>
         <source>Image Shrink:</source>
         <translation>画像テクスチャの粗さ：</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="102"/>
+        <location filename="../settingsdialog.cpp" line="112"/>
         <source>Matte Dilate:</source>
         <translation>アルファマットを拡張：</translation>
     </message>
@@ -1714,7 +1723,7 @@ for character Levels.</source>
         <translation type="vanished">ワープ品質：</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="91"/>
+        <location filename="../settingsdialog.cpp" line="95"/>
         <source>Alpha Mode:</source>
         <translation>アルファチャンネルの操作：</translation>
     </message>
