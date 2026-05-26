@@ -267,6 +267,7 @@ void ShapeOptionsDialog::onSelectionChanged(IwSelection *selection) {
           m_depthEdit->setText(QString::number(minDepth));
         else
           m_depthEdit->setText(QString("%1 - %2").arg(minDepth).arg(maxDepth));
+
       } else {
         m_depthSlider->setDisabled(true);
         m_depthEdit->setDisabled(true);

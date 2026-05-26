@@ -17,6 +17,7 @@
 #include "iwtimelinekeyselection.h"
 #include "iwtrianglecache.h"
 #include "keydragtool.h"
+#include "menubarcommandids.h"
 
 #include <QVector>
 #include <QPainter>
@@ -861,6 +862,9 @@ void IwLayer::onRightClick(int row, QMenu& menu) {
                 SLOT(onSwitchParentChild()));
         menu.addAction(parentChildAct);
         //----
+
+        menu.addAction(
+            CommandManager::instance()->getAction(MI_PasteMatteInfo));
 
         return;
       }
