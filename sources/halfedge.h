@@ -112,6 +112,8 @@ public:
   bool hasConstantDepth() const;
   // 重心のDepthを返す
   double centroidDepth() const;
+  // BBoxを返す
+  QRectF getToBBox() const;
 };
 
 class HEModel {
@@ -179,6 +181,9 @@ public:
                         HEVertex* end);
 
   void print();
+
+  // Toメッシュ形状のBBoxを返す
+  QRectF getToBBox();
 };
 
 #endif

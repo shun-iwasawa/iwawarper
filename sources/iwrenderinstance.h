@@ -172,7 +172,8 @@ class IwRenderInstance : public QObject, public QRunnable {
                                           TRasterGR8P matteRas,
                                           TRaster64P mlssRefRas,
                                           ShapePair* shape, QPoint& origin,
-                                          const QPolygonF& parentShapePolygon);
+                                          const QPolygonF& parentShapePolygon,
+                                          const QRect& boundingRect);
 
   // 三角形の位置をキャッシュする
   void HEcacheTriangles(HEModel& model, ShapePair* shape,
@@ -180,7 +181,7 @@ class IwRenderInstance : public QObject, public QRunnable {
                         const QPolygonF& parentShapePolygon);
 
   // マット画像を作成する
-  TRasterGR8P createMatteRas(ShapePair* shape);
+  TRasterGR8P createMatteRas(ShapePair* shape, const QRect& boundingRect);
 
   // Morphological
   // Supersamplingを行う場合、サンプル用の境界線マップ画像を生成する
