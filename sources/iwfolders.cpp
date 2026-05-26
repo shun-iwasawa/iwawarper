@@ -15,7 +15,11 @@ QString getUserName() {
 QString getStuffPath() {
   static QString IwStuffPath = QString();
   if (IwStuffPath.isEmpty()) {
+#ifdef MACOSX
+    QString confPath = qApp->applicationDirPath() + "/../Resources/conf.ini";
+#else
     QString confPath = qApp->applicationDirPath() + "/conf.ini";
+#endif
     QSettings settings(confPath, QSettings::IniFormat);
     IwStuffPath = settings.value("IWSTUFFROOT", "").toString();
     // resolve tilde "~"

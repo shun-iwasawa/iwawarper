@@ -1,53 +1,29 @@
-#version 430
+#version 410
 
 uniform float stipplePattern[16];
 // picking
-uniform vec2 mousePos;
-uniform int objName;
-uniform float devPixRatio;
+uniform int objName; // ピッキング時以外は 0 を想定
 
 in highp float gStippleCoord;
 in highp vec4 gColor;
 
-
 layout (location = 0) out vec4 fc; 
 
-layout(std430, binding = 0) coherent buffer PickedNameSSBO
-{
-  uint nameCount[3];
-  uint names[3][32];
-} pickedNameSSBO;
-
-bool isNeighbor(int range){
-  return abs(mousePos.x - gl_FragCoord.x / devPixRatio) <= range &&
-		  abs(mousePos.y - gl_FragCoord.y / devPixRatio) <= range;
-}
-
 void main() {
-	
-	// when pick mode
-	if(objName != 0){
-	  int ranges[3] = {5, 10 , 20};
+    // 点線（スティップル）の隙間を破棄する処理（元のロジックを維持）
+    float stip = stipplePattern[int(fract(gStippleCoord) * 16.0)];
+    if (stip == 0.0)
+        discard;
 
-	  for(int r = 0; r < 3; r++){
-		if(isNeighbor(ranges[r]) && pickedNameSSBO.nameCount[r] < 32){
-		  bool found = false;
-		  for(int n = 0; n < pickedNameSSBO.nameCount[r]; n++){
-			if(pickedNameSSBO.names[r][n] == uint(objName)){
-			  found = true;
-			  break;
-			}
-		  }
-		  if(!found){
-			pickedNameSSBO.names[r][pickedNameSSBO.nameCount[r]] = uint(objName);
-			pickedNameSSBO.nameCount[r]++;
-		  }
-		}
-	  }
-	}
-
-	float stip = stipplePattern[int(fract(gStippleCoord) * 16.0)];
-	if (stip == 0.0)
-		discard;
-	fc = gColor;
+    if (objName != 0) {
+        // objName (int) を 24bit整数として RGBA の各チャンネルにエンコード
+        int r = objName & 0xFF;
+        int g = (objName >> 8) & 0xFF;
+        int b = (objName >> 16) & 0xFF;
+        
+        fc = vec4(float(r) / 255.0, float(g) / 255.0, float(b) / 255.0, 1.0);
+    } else {
+        // 通常描画モード
+        fc = gColor;
+    }
 }

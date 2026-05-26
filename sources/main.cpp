@@ -7,6 +7,7 @@
 #include <QTranslator>
 #include <QFile>
 #include <QDir>
+#include <QSurfaceFormat>
 
 #include "tiio_std.h"
 #include "tnzimage.h"
@@ -23,6 +24,11 @@ FILE* Logger::file           = nullptr;
 
 int main(int argc, char* argv[]) {
   Logger::Initialize("Log.txt");
+
+  QSurfaceFormat fmt;
+  fmt.setVersion(4, 1);
+  fmt.setProfile(QSurfaceFormat::CoreProfile);
+  QSurfaceFormat::setDefaultFormat(fmt);
 
   // Enables high-DPI scaling. This attribute must be set before QApplication is
   // constructed. Available from Qt 5.6.

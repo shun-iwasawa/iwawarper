@@ -9,7 +9,7 @@
 #include "viewsettings.h"
 
 #include <QOpenGLWidget>
-#include <QOpenGLExtraFunctions>
+#include <QOpenGLFunctions_4_1_Core>
 #include <QTransform>
 #include <QMouseEvent>
 #include <QStack>
@@ -29,7 +29,7 @@ class QOpenGLShaderProgram;
 class QOpenGLBuffer;
 class QOpenGLVertexArrayObject;
 
-class SceneViewer : public QOpenGLWidget, protected QOpenGLExtraFunctions {
+class SceneViewer : public QOpenGLWidget, protected QOpenGLFunctions_4_1_Core {
   Q_OBJECT
 
   IwProject *m_project = nullptr;
@@ -67,8 +67,6 @@ class SceneViewer : public QOpenGLWidget, protected QOpenGLExtraFunctions {
   QOpenGLBuffer *m_vbo                     = nullptr;
   QOpenGLBuffer *m_ibo                     = nullptr;  // index buffer
   QOpenGLVertexArrayObject *m_vao          = nullptr;
-
-  GLuint m_name_ssbo = 0;
 
   QOpenGLBuffer *m_line_vbo            = nullptr;
   QOpenGLVertexArrayObject *m_line_vao = nullptr;
