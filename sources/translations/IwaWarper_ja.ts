@@ -422,37 +422,37 @@ Remove its shapes?</source>
         <translation type="vanished">レイヤー</translation>
     </message>
     <message>
-        <location filename="../iwlayer.cpp" line="74"/>
+        <location filename="../iwlayer.cpp" line="75"/>
         <source>_clone</source>
         <translation>_複製</translation>
     </message>
     <message>
-        <location filename="../iwlayer.cpp" line="812"/>
+        <location filename="../iwlayer.cpp" line="813"/>
         <source>Move Shape Upward</source>
         <translation>シェイプを上に移動</translation>
     </message>
     <message>
-        <location filename="../iwlayer.cpp" line="819"/>
+        <location filename="../iwlayer.cpp" line="820"/>
         <source>Move Above the Upper Expanded Shape</source>
         <translation>表示されている上のシェイプの上に移動</translation>
     </message>
     <message>
-        <location filename="../iwlayer.cpp" line="828"/>
+        <location filename="../iwlayer.cpp" line="829"/>
         <source>Move Shape Downward</source>
         <translation>シェイプを下に移動</translation>
     </message>
     <message>
-        <location filename="../iwlayer.cpp" line="846"/>
+        <location filename="../iwlayer.cpp" line="847"/>
         <source>Move Below the Lower Expanded Shape</source>
         <translation>表示されている下のシェイプの下に移動</translation>
     </message>
     <message>
-        <location filename="../iwlayer.cpp" line="857"/>
+        <location filename="../iwlayer.cpp" line="858"/>
         <source>Set to Child</source>
         <translation>子に設定</translation>
     </message>
     <message>
-        <location filename="../iwlayer.cpp" line="857"/>
+        <location filename="../iwlayer.cpp" line="858"/>
         <source>Set to Parent</source>
         <translation>親に設定</translation>
     </message>
@@ -460,12 +460,12 @@ Remove its shapes?</source>
 <context>
     <name>IwProject</name>
     <message>
-        <location filename="../iwproject.cpp" line="249"/>
+        <location filename="../iwproject.cpp" line="238"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="../iwproject.cpp" line="250"/>
+        <location filename="../iwproject.cpp" line="239"/>
         <source>An older version of the project file was loaded. Please check the following:</source>
         <translation>古いバージョンのプロジェクトが読み込まれました。下記をご確認ください：</translation>
     </message>
@@ -486,22 +486,22 @@ Remove its shapes?</source>
 <context>
     <name>IwShapePairSelection</name>
     <message>
-        <location filename="../iwshapepairselection.cpp" line="574"/>
+        <location filename="../iwshapepairselection.cpp" line="575"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="../iwshapepairselection.cpp" line="575"/>
+        <location filename="../iwshapepairselection.cpp" line="576"/>
         <source>No shapes are selected.</source>
         <translation>シェイプが選択されていません。</translation>
     </message>
     <message>
-        <location filename="../iwshapepairselection.cpp" line="598"/>
+        <location filename="../iwshapepairselection.cpp" line="599"/>
         <source>Info</source>
         <translation>通知</translation>
     </message>
     <message>
-        <location filename="../iwshapepairselection.cpp" line="599"/>
+        <location filename="../iwshapepairselection.cpp" line="600"/>
         <source>%1 shapes are exported successfully.</source>
         <translation>%1個のシェイプがエクスポートされました。</translation>
     </message>
@@ -723,12 +723,17 @@ Remove its shapes?</source>
         <translation>ピクセル等倍表示(&amp;Z)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="876"/>
+        <location filename="../mainwindow.cpp" line="423"/>
+        <source>Paste Matte Info</source>
+        <translation>アルファマット設定の貼り付け</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="878"/>
         <source>Language</source>
         <translation>言語</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="918"/>
+        <location filename="../mainwindow.cpp" line="920"/>
         <source>Changes will take effect the next time you run IwaWarper.</source>
         <translation>変更は次回 IwaWarper を立ち上げたときに反映されます。</translation>
     </message>
@@ -807,22 +812,22 @@ Remove its shapes?</source>
         <translation>選択シェイプの表示/非表示を切り替える</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="505"/>
+        <location filename="../mainwindow.cpp" line="507"/>
         <source>New Project</source>
         <translation>新規プロジェクト</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="547"/>
+        <location filename="../mainwindow.cpp" line="549"/>
         <source>Open Project</source>
         <translation>プロジェクトを開く</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="709"/>
+        <location filename="../mainwindow.cpp" line="711"/>
         <source>IwaWarper launched.</source>
         <translation>IwaWarperが起動しました。</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="776"/>
+        <location filename="../mainwindow.cpp" line="778"/>
         <source>Exit</source>
         <translation>終了</translation>
     </message>
@@ -885,27 +890,27 @@ Remove its shapes?</source>
         <translation>前のフレーム(&amp;P)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="520"/>
+        <location filename="../mainwindow.cpp" line="522"/>
         <source>Undo</source>
         <translation>元に戻す</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="521"/>
+        <location filename="../mainwindow.cpp" line="523"/>
         <source>No more Undo operations available.</source>
         <translation>もとに戻せる操作がありません。</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="533"/>
+        <location filename="../mainwindow.cpp" line="535"/>
         <source>Redo</source>
         <translation>やり直す</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="534"/>
+        <location filename="../mainwindow.cpp" line="536"/>
         <source>No more Redo operations available.</source>
         <translation>やり直せる動作がありません。</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="731"/>
+        <location filename="../mainwindow.cpp" line="733"/>
         <source>Untitled</source>
         <translation>名称未設定</translation>
     </message>
@@ -1215,25 +1220,25 @@ Remove its shapes?</source>
         <translation>円形</translation>
     </message>
     <message>
-        <location filename="../sceneviewer.cpp" line="2088"/>
+        <location filename="../sceneviewer.cpp" line="2027"/>
         <location filename="../iwrendercommand.cpp" line="98"/>
         <location filename="../iwrendercommand.cpp" line="116"/>
         <source>Output Settings Error</source>
         <translation>出力設定エラー</translation>
     </message>
     <message>
-        <location filename="../sceneviewer.cpp" line="2089"/>
+        <location filename="../sceneviewer.cpp" line="2028"/>
         <location filename="../iwrendercommand.cpp" line="117"/>
         <source>Output directory is not set.</source>
         <translation>保存先が設定されていません。</translation>
     </message>
     <message>
-        <location filename="../sceneviewer.cpp" line="2096"/>
+        <location filename="../sceneviewer.cpp" line="2035"/>
         <source>Do you want to create folder?</source>
         <translation>フォルダを作成しますか？</translation>
     </message>
     <message>
-        <location filename="../sceneviewer.cpp" line="2106"/>
+        <location filename="../sceneviewer.cpp" line="2045"/>
         <source>Failed to create folder.</source>
         <translation>フォルダの作成に失敗しました。</translation>
     </message>
@@ -1268,27 +1273,27 @@ Remove its shapes?</source>
         <translation>キャンセル</translation>
     </message>
     <message>
-        <location filename="../iocommand.cpp" line="491"/>
+        <location filename="../iocommand.cpp" line="492"/>
         <source>Saved to %1 .</source>
         <translation>%1 に保存しました。</translation>
     </message>
     <message>
-        <location filename="../iocommand.cpp" line="635"/>
+        <location filename="../iocommand.cpp" line="636"/>
         <source>Import Project/Shapes File</source>
         <translation>プロジェクト/シェイプをインポート</translation>
     </message>
     <message>
-        <location filename="../iocommand.cpp" line="644"/>
+        <location filename="../iocommand.cpp" line="645"/>
         <source>Error</source>
         <translation>エラー</translation>
     </message>
     <message>
-        <location filename="../iocommand.cpp" line="644"/>
+        <location filename="../iocommand.cpp" line="645"/>
         <source>No current layer</source>
         <translation>レイヤーが選択されていません</translation>
     </message>
     <message>
-        <location filename="../iocommand.cpp" line="725"/>
+        <location filename="../iocommand.cpp" line="726"/>
         <source>%1 : The current project has been modified.
 What would you like to do?</source>
         <translation>%1 ： 現在のプロジェクトは変更されています。
@@ -1581,12 +1586,12 @@ What would you like to do?</source>
 <context>
     <name>SceneViewer</name>
     <message>
-        <location filename="../sceneviewer.cpp" line="1461"/>
+        <location filename="../sceneviewer.cpp" line="1424"/>
         <source>Change Current Layer</source>
         <translation>現在のレイヤーを切り替え</translation>
     </message>
     <message>
-        <location filename="../sceneviewer.cpp" line="1483"/>
+        <location filename="../sceneviewer.cpp" line="1446"/>
         <source>Unlock All Shapes</source>
         <translation>全てのシェイプのロックを解除</translation>
     </message>
@@ -1614,42 +1619,42 @@ What would you like to do?</source>
         <translation type="vanished">シェイプのアンチエイリアス</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="49"/>
+        <location filename="../settingsdialog.cpp" line="51"/>
         <source>Low</source>
         <translation>低</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="50"/>
+        <location filename="../settingsdialog.cpp" line="52"/>
         <source>Medium</source>
         <translation>中</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="51"/>
+        <location filename="../settingsdialog.cpp" line="53"/>
         <source>High</source>
         <translation>高</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="52"/>
+        <location filename="../settingsdialog.cpp" line="54"/>
         <source>Super High</source>
         <translation>最高</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="59"/>
+        <location filename="../settingsdialog.cpp" line="61"/>
         <source>Area Average</source>
         <translation>平均値</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="60"/>
+        <location filename="../settingsdialog.cpp" line="62"/>
         <source>Nearest Neighbor</source>
         <translation>ニアレストネイバー</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="61"/>
+        <location filename="../settingsdialog.cpp" line="63"/>
         <source>Morphological Supersampling</source>
         <translation>形態学的スーパーサンプリング</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="63"/>
+        <location filename="../settingsdialog.cpp" line="65"/>
         <source>PLEASE NOTE: The &quot;Morphological Supersampling&quot; option is intended 
 to be used when deforming so-called &quot;color binary images&quot;, 
 such as those commonly used in the Japanese animation industry 
@@ -1659,62 +1664,62 @@ for character Levels.</source>
 いわゆるカラー二値画像を変形するときに用いられることを想定しています。</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="73"/>
+        <location filename="../settingsdialog.cpp" line="75"/>
         <source>* Changes will take effect the next time you run IwaWarper</source>
         <translation>＊ 変更は次回のIwaWarper起動時に適用されます</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="81"/>
+        <location filename="../settingsdialog.cpp" line="83"/>
         <source>Project Settings</source>
         <translation>プロジェクト設定</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="121"/>
+        <location filename="../settingsdialog.cpp" line="123"/>
         <source>User Preferences</source>
         <translation>ユーザー環境設定</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="127"/>
+        <location filename="../settingsdialog.cpp" line="129"/>
         <source>Bezier Precision:</source>
         <translation>ベジエ曲線の精度：</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="132"/>
+        <location filename="../settingsdialog.cpp" line="134"/>
         <source>Vertex Buffer Size*:</source>
         <translation>頂点バッファのサイズ*：</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="87"/>
+        <location filename="../settingsdialog.cpp" line="89"/>
         <source>Number of subdivision:</source>
         <translation>メッシュ分割の回数：</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="40"/>
+        <location filename="../settingsdialog.cpp" line="41"/>
         <source>Keep Semi-transparent Pixels In Source Image</source>
         <translation>画像の半透明ピクセルを保持する</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="41"/>
+        <location filename="../settingsdialog.cpp" line="43"/>
         <source>Mask Result With Antialiased Parent Shape</source>
         <translation>計算結果をアンチエイリアスが適用された親シェイプでマスクする</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="91"/>
+        <location filename="../settingsdialog.cpp" line="93"/>
         <source>Maximum face size:</source>
         <translation>最大メッシュサイズ：</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="100"/>
+        <location filename="../settingsdialog.cpp" line="102"/>
         <source>Resample Mode:</source>
         <translation>リサンプル方式：</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="108"/>
+        <location filename="../settingsdialog.cpp" line="110"/>
         <source>Image Shrink:</source>
         <translation>画像テクスチャの粗さ：</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="112"/>
+        <location filename="../settingsdialog.cpp" line="114"/>
         <source>Matte Dilate:</source>
         <translation>アルファマットを拡張：</translation>
     </message>
@@ -1723,7 +1728,7 @@ for character Levels.</source>
         <translation type="vanished">ワープ品質：</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="95"/>
+        <location filename="../settingsdialog.cpp" line="97"/>
         <source>Alpha Mode:</source>
         <translation>アルファチャンネルの操作：</translation>
     </message>
