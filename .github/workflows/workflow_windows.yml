@@ -91,6 +91,9 @@ jobs:
           copy /Y ..\thirdparty\glut\3.7.6\lib\glut64.dll IwaWarper
           copy /Y ..\.github\workflows\conf.ini IwaWarper
           "%QT_PATH%\bin\windeployqt.exe" IwaWarper\IwaWarper.exe
+          "%QT_PATH%\bin\windeployqt.exe" IwaWarper\image.dll
+          "%QT_PATH%\bin\windeployqt.exe" IwaWarper\toonzlib.dll
+          "%QT_PATH%\bin\windeployqt.exe" IwaWarper\tnzcore.dll
         shell: cmd
 
       - uses: actions/upload-artifact@v6
