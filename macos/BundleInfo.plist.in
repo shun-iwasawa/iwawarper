@@ -19,11 +19,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.1</string>
+	<string>1.1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>1.1.0</string>
 	<key>CSResourcesFileMapped</key>
 	<true/>
 	<key>LSRequiresCarbon</key>
@@ -31,8 +31,8 @@
 	<key>NSHighResolutionCapable</key>
 	<true/>
 	<key>NSHumanReadableCopyright</key>
-	<string>All contributions by Shun Iwasawa:Copyright (c) 2014 - 2022, Shun Iwasawa All rights reserved.
-        All other contributions: Copyright (c) 2022, the respective contributors. All rights reserved.
+	<string>All contributions by Shun Iwasawa:Copyright (c) 2014 - 2026, Shun Iwasawa All rights reserved.
+        All other contributions: Copyright (c) 2022 - 2026, the respective contributors. All rights reserved.
         Each contributor holds copyright over their respective contributions. The project versioning (Git) records all such contribution source information.</string>
 </dict>
 </plist>

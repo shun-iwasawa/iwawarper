@@ -6,11 +6,11 @@ For files in the "thirdparty" directory: Please consult with the licenses in the
 IwaWarper
 
 All contributions by Shun Iwasawa:
-Copyright (c) 2014 - 2022, Shun Iwasawa
+Copyright (c) 2014 - 2026, Shun Iwasawa
 All rights reserved.
 
 All other contributions:
-Copyright (c) 2022, the respective contributors.
+Copyright (c) 20220 - 2026, the respective contributors.
 All rights reserved.
 
 Each contributor holds copyright over their respective contributions.

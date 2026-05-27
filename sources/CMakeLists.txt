@@ -3,7 +3,7 @@
 cmake_minimum_required(VERSION 3.10)
 
 # Specify the project name
-project(IwaWarper VERSION 1.0.0)
+project(IwaWarper VERSION 1.1.0)
 
 set(MOC_HEADERS
 aboutpopup.h

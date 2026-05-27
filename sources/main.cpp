@@ -36,7 +36,7 @@ int main(int argc, char* argv[]) {
 
   QApplication a(argc, argv);
   a.setApplicationName("IwaWarper");
-  a.setApplicationVersion("1.0.1");
+  a.setApplicationVersion("1.1.0");
 
   QDir::setCurrent(qApp->applicationDirPath());
 
